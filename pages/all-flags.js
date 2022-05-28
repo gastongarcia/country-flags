@@ -23,25 +23,20 @@ export default function Home({ countries }) {
       <Nav />
 
       <h2 className="page-title text-2xl my-8 uppercase">
-        All countries in messy order
+        All flags in messy order
       </h2>
 
       {countries?.length === 0 ? (
         <div>...Loading page</div>
       ) : (
         countries?.map((country) => (
-          <div key={country.ccn3} className="my-5 bg-white px-5 pt-5 pb-4">
-            <p className="text-xs mt-1">Name in english:</p>
-            <p className="text-xl">{country.name.common}</p>
-            <p className="text-xs mt-5">Nombre en español:</p>
-            <p className="text-xl italic mb-5">
-              {country.translations.spa.common}
-            </p>
-            <p className="text-m">Capital: {country.capital}</p>
+          <div
+            key={country.ccn3}
+            className="my-5 bg-white px-5 pt-5 pb-4"
+            region={country.region}
+          >
             <img src={country.flags.png} className="my-3 border" />
-            <p className="text-m">
-              Region: {country.region} / Sub-region: {country.subregion}
-            </p>
+            <p className="text-xs">{country.name.common}</p>
           </div>
         ))
       )}
