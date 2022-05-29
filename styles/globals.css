@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 .page-title {
-  font-family: "Architects Daughter", serif;
+  font-family: "Bubblegum Sans", serif;
 }
 .nav-item {
   @apply mr-10 text-red-800 hover:text-blue-800;
+}
+
+.funky {
+  font-family: "Bubblegum Sans", serif;
 }

@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import Nav from "../components/nav";
 
 export async function getStaticProps() {
@@ -32,16 +33,24 @@ export default function Home({ countries }) {
         countries?.map((country) => (
           <div key={country.ccn3} className="my-5 bg-white px-5 pt-5 pb-4">
             <p className="text-xs mt-1">Name in english:</p>
-            <p className="text-xl">{country.name.common}</p>
+            <p className="funky text-4xl">{country.name.common}</p>
             <p className="text-xs mt-5">Nombre en español:</p>
-            <p className="text-xl italic mb-5">
+            <p className="funky text-2xl mb-5">
               {country.translations.spa.common}
             </p>
             <p className="text-m">Capital: {country.capital}</p>
-            <img src={country.flags.png} className="my-3 border" />
-            <p className="text-m">
-              Region: {country.region} / Sub-region: {country.subregion}
-            </p>
+            <Link
+              href={{
+                pathname: "/countries/[countryId]",
+                query: { countryId: country.cca3.toLowerCase() },
+              }}
+            >
+              <a>
+                <img src={country.flags.png} className="my-3 border" />
+              </a>
+            </Link>
+            <p className="text-m">Region: {country.region}</p>
+            <p className="text-m">Sub-region: {country.subregion}</p>
           </div>
         ))
       )}

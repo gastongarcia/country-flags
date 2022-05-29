@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Nav from "../components/nav";
+import Link from "next/link";
 
 export async function getStaticProps() {
   const res = await fetch("https://restcountries.com/v3.1/all");
@@ -37,6 +38,14 @@ export default function Home({ countries }) {
           >
             <img src={country.flags.png} className="my-3 border" />
             <p className="text-xs">{country.name.common}</p>
+            <Link
+              href={{
+                pathname: "/countries/[countryId]",
+                query: { countryId: country.ccn3 },
+              }}
+            >
+              <a className="text-sm my-3 block">View Country Details</a>
+            </Link>
           </div>
         ))
       )}
